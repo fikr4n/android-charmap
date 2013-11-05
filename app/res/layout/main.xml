@@ -9,6 +9,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
     </Spinner>
+    
+    <AutoCompleteTextView
+        android:id="@+id/sectionSearchText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
     <GridView
         android:id="@+id/gridView"

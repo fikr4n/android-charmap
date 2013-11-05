@@ -1,5 +1,6 @@
 package com.kkinder.charmap;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.ClipboardManager;
 import android.view.View;
@@ -11,15 +12,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class ButtonMapAdapter extends BaseAdapter {
-    private Context mContext;
+	
+    private Activity mContext;
     private String[] characters = {};
     private View appEditArea;
     private EditText appEditor;
-    private Charmap activity;
     
-    public ButtonMapAdapter(Context c, Charmap a, View editArea, EditText editor, String[] chars) {
-        mContext = c;
-        activity = a;
+    public ButtonMapAdapter(Activity context, View editArea, EditText editor, String[] chars) {
+        mContext = context;
         characters = chars;
         appEditArea = editArea;
         appEditor = editor;
@@ -30,11 +30,11 @@ public class ButtonMapAdapter extends BaseAdapter {
     }
 
     public Object getItem(int position) {
-        return null;
+        return characters[position];
     }
 
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     // create a new ButtonView for each item referenced by the Adapter
@@ -63,7 +63,7 @@ public class ButtonMapAdapter extends BaseAdapter {
 
         			Toast toast = Toast.makeText(mContext, text, duration);
         			toast.show();
-        			activity.finish();
+        			mContext.finish();
     			}
     	    }
     	});
