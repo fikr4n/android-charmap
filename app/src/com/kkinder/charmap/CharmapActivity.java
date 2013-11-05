@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -88,10 +90,11 @@ public class CharmapActivity extends Activity {
 	
 	private Spinner sectionSpinner;
 	private AutoCompleteTextView sectionSearchText;
-	private Button copyButton;
+	private View copyButton;
 	private EditText editor;
 	private GridView gridview;
 	private LinearLayout editArea;
+	private View searchToggleButton;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -110,10 +113,11 @@ public class CharmapActivity extends Activity {
 
 		sectionSpinner = (Spinner) findViewById(R.id.sectionSpinner);
 		sectionSearchText = (AutoCompleteTextView) findViewById(R.id.sectionSearchText);
-		copyButton = (Button) findViewById(R.id.copyButton);
+		copyButton = findViewById(R.id.copyButton);
 		editor = (EditText) findViewById(R.id.editor);
 		gridview = (GridView) findViewById(R.id.gridView);
 		editArea = (LinearLayout) findViewById(R.id.editArea);
+		searchToggleButton = findViewById(R.id.searchToggleButton);
 
 		// Copy button
 		
@@ -147,11 +151,40 @@ public class CharmapActivity extends Activity {
 		ArrayAdapter<IndexEntry> searchAdapter = new ArrayAdapter<IndexEntry>(
 				this, android.R.layout.simple_dropdown_item_1line, charmapNameEntries);
 		sectionSearchText.setAdapter(searchAdapter);
+		sectionSearchText.setVisibility(View.GONE);
 		sectionSearchText.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> a, View view, int pos, long id) {
 				sectionSpinner.setSelection(((IndexEntry) a.getItemAtPosition(pos)).index);
+				setSectionSearchVisible(false);
 			}
 		});
+		
+		searchToggleButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				toggleSectionSearch();
+				sectionSearchText.requestFocus();
+			}
+		});
+	}
+	
+	private void toggleSectionSearch() {
+		setSectionSearchVisible(sectionSearchText.getVisibility() != View.VISIBLE);
+	}
+	
+	private void setSectionSearchVisible(boolean visible) {
+		if (visible) {
+			Animation anim = AnimationUtils.loadAnimation(this, R.anim.slide_in_up);
+			sectionSearchText.setText(null);
+			sectionSearchText.setVisibility(View.VISIBLE);
+			sectionSearchText.startAnimation(anim);
+			sectionSpinner.setVisibility(View.GONE);
+		} else {
+			Animation anim = AnimationUtils.loadAnimation(this, R.anim.slide_out_down);
+			sectionSearchText.setVisibility(View.GONE);
+			sectionSearchText.startAnimation(anim);
+			sectionSpinner.setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override
@@ -215,11 +248,12 @@ public class CharmapActivity extends Activity {
 	}
 
 	public void updateBatchMode(boolean batchMode) {
-		LinearLayout editArea = (LinearLayout) findViewById(R.id.editArea);
 		if (batchMode) {
 			editArea.setVisibility(View.VISIBLE);
+			editArea.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in_up));
 		} else {
 			editArea.setVisibility(View.GONE);
+			editArea.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_out_down));
 		}
 		
 		invalidateOptionsMenuCompat();

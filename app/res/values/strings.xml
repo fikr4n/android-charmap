@@ -6,11 +6,12 @@
     <string name="show_editor">Show editor</string>
     <string name="hide_editor">Hide editor</string>
     <string name="close_button">Close</string>
+    <string name="search_section">Search section</string>
     <string name="about_title">About Charmap</string>
     <string name="about">Version 1.0.1&lt;br/&gt;
         &lt;a href=&quot;http://kenkinder.com/charmap/&quot;&gt;kenkinder.com/charmap/&lt;/a&gt;&lt;br/&gt;
         &lt;br/&gt;
-        Simple Android Unicode Character Map. Based on &lt;a href=&quot;http://unicode.org/ucd/&quot;&gt;Offical
+        Simple Android Unicode Character Map. Based on &lt;a href=&quot;http://unicode.org/ucd/&quot;&gt;Official
         Unicode Database&lt;/a&gt;. Not all characters will render with your font.&lt;br/&gt;
         &lt;br/&gt;
         Copyright © 2011 Ken Kinder&lt;br/&gt;

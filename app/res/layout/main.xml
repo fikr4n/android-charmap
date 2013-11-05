@@ -4,16 +4,31 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <Spinner
-        android:id="@+id/sectionSpinner"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-    </Spinner>
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
 
-    <AutoCompleteTextView
-        android:id="@+id/sectionSearchText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        <Spinner
+            android:id="@+id/sectionSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <AutoCompleteTextView
+            android:id="@+id/sectionSearchText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/searchToggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/search_section"
+            android:src="@android:drawable/ic_menu_search" />
+    </LinearLayout>
 
     <GridView
         android:id="@+id/gridView"
@@ -25,13 +40,13 @@
         android:horizontalSpacing="0dp"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="0dp" >
-    </GridView>
+        android:verticalSpacing="0dp" />
 
     <LinearLayout
         android:id="@+id/editArea"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <EditText
@@ -39,16 +54,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:inputType="text"
-            android:text="" >
-        </EditText>
+            android:inputType="text" />
 
-        <Button
+        <ImageButton
             android:id="@+id/copyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/copy_button_label" >
-        </Button>
+            android:src="@android:drawable/ic_menu_set_as"
+            android:text="@string/copy_button_label" />
     </LinearLayout>
 
 </LinearLayout>
