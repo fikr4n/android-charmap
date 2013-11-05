@@ -1,11 +1,11 @@
 package com.kkinder.charmap;
 
-public class IndexEntry<T> {
+public class IndexEntry {
 
 	public final int index;
-	public final T value;
+	public final CharSequence value;
 
-	public IndexEntry(int index, T value) {
+	public IndexEntry(int index, CharSequence value) {
 		this.index = index;
 		this.value = value;
 	}
