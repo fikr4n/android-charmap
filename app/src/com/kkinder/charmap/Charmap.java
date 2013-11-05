@@ -3,10 +3,12 @@ package com.kkinder.charmap;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.ClipboardManager;
 import android.text.Html;
@@ -15,9 +17,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +28,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 
 public class Charmap extends Activity {
@@ -98,14 +99,23 @@ public class Charmap extends Activity {
         case R.id.menu_show_editor:
         	batchMode = true;
         	updateBatchMode(true);
+        	invalidateOptionsMenu();
             return true;
         case R.id.menu_hide_editor:
         	batchMode = false;
         	updateBatchMode(false);
+        	invalidateOptionsMenu();
             return true;
         default:
             return super.onOptionsItemSelected(item);
         }
+    }
+    
+    @Override
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public void invalidateOptionsMenu() {
+    	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+    		super.invalidateOptionsMenu();
     }
     
     public void updateBatchMode(boolean batchMode) {

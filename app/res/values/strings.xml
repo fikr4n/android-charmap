@@ -3,8 +3,8 @@
     <string name="copy_button_label">Copy</string>
     <string name="app_name">Charmap</string>
     <string name="menu_about">About</string>
-    <string name="show_editor">Show Editor</string>
-    <string name="hide_editor">Hide Editor</string>
+    <string name="show_editor">Show editor</string>
+    <string name="hide_editor">Hide editor</string>
     <string name="close_button">Close</string>
     <string name="about_title">About Charmap</string>
     <string name="about">Version 1.0.1&lt;br/&gt;
