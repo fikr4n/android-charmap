@@ -107,8 +107,6 @@ public class CharmapActivity extends Activity {
 		batchMode = settings.getBoolean("batchMode", false);
 		pageIndex = settings.getInt("page", 0);
 
-		updateBatchMode(batchMode);
-
 		// Do the GUI stuff
 
 		sectionSpinner = (Spinner) findViewById(R.id.sectionSpinner);
@@ -118,9 +116,11 @@ public class CharmapActivity extends Activity {
 		gridview = (GridView) findViewById(R.id.gridView);
 		editArea = (LinearLayout) findViewById(R.id.editArea);
 		searchToggleButton = findViewById(R.id.searchToggleButton);
-
-		// Copy button
 		
+		// Edit area
+
+		updateBatchMode(batchMode);
+
 		copyButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
