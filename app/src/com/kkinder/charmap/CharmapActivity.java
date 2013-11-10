@@ -36,23 +36,35 @@ import android.widget.Toast;
 
 public class CharmapActivity extends Activity {
 	
+	/**
+	 * Adapter of the GridView to show the char buttons.
+	 */
 	private class ButtonMapAdapter extends BaseAdapter {
 
+		/** Inclusive begin and exclusive end of the character codes to be shown. */
 		private int begin, end;
 	    
+		/**
+		 * 
+		 * @param begin inclusive beginning of the charcode to be shown
+		 * @param end exclusive end of the charcode to be shown
+		 */
 	    public ButtonMapAdapter(int begin, int end) {
 	        this.begin = begin;
 	        this.end = end;
 	    }
 
+	    @Override
 	    public int getCount() {
 	        return end >= begin ? end - begin : 0;
 	    }
 
+	    @Override
 	    public Character getItem(int position) {
 	        return (char) (begin + position);
 	    }
 
+	    @Override
 	    public long getItemId(int position) {
 	        return position;
 	    }
@@ -128,7 +140,7 @@ public class CharmapActivity extends Activity {
 			}
 		});
 		
-		// Section choice spinner
+		// Section/page choice spinner
 
 		ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(
 				this, android.R.layout.simple_spinner_item, CharMap.charmapNames);
@@ -143,7 +155,7 @@ public class CharmapActivity extends Activity {
 			}
 		});
 		
-		// Section search
+		// Section/page search
 
 		ArrayList<IndexEntry> charmapNameEntries = new ArrayList<IndexEntry>(CharMap.charmapNames.length);
 		for (int i = 0; i < CharMap.charmapNames.length; ++i)
@@ -168,6 +180,9 @@ public class CharmapActivity extends Activity {
 		});
 	}
 	
+	/**
+	 * Toggle visibility of the search box for section.
+	 */
 	private void toggleSectionSearch() {
 		setSectionSearchVisible(sectionSearchText.getVisibility() != View.VISIBLE);
 	}
@@ -267,6 +282,10 @@ public class CharmapActivity extends Activity {
 		gridview.setAdapter(new ButtonMapAdapter(begin, end));
 	}
 
+	/**
+	 * Finish the activity and copy the char(s) to the clipboard.
+	 * @param text
+	 */
 	@SuppressWarnings("deprecation")
 	private void finish(String text) {
 		((android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE)).
@@ -279,6 +298,7 @@ public class CharmapActivity extends Activity {
 	
 	@SuppressWarnings("deprecation")
 	public void showDialogCompat(int id) {
+		/* Use method deprecation instead of class deprecation */
 		super.showDialog(id);
 	}
 	
@@ -286,6 +306,7 @@ public class CharmapActivity extends Activity {
 	@Deprecated
 	protected Dialog onCreateDialog(int id) {
 		if (id == DIALOG_ABOUT) {
+			
 			final Dialog dialog = new Dialog(CharmapActivity.this);
 			dialog.setContentView(R.layout.about);
 			dialog.setTitle(R.string.about_title);
