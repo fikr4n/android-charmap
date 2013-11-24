@@ -11,4 +11,4 @@ Screenshots
 
 ![Screenshot](https://raw.github.com/fikr4n/android-charmap/master/ss1.png)
 
-![Screenshot](https://raw.github.com/fikr4n/android-charmap/master/ss1.png)
+![Screenshot](https://raw.github.com/fikr4n/android-charmap/master/ss2.png)
